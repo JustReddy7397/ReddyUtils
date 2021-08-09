@@ -29,8 +29,16 @@ public class ConfigManager {
     public void registerFile(JavaPlugin plugin, String fileType, String fileName) {
         configurations.put(fileType, new ConfigHandler(plugin, fileName));
         configurations.values().forEach(ConfigHandler::saveDefaultConfig);
-
     }
+
+    public void createFolder(JavaPlugin plugin){
+        File file = new File("plugins/" + plugin.getDescription().getName());
+        if(!file.exists()){
+            file.mkdir();
+        }
+    }
+
+
 
 
 

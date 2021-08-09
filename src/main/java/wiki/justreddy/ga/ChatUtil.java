@@ -17,7 +17,7 @@ import java.util.*;
 
 public interface ChatUtil {
 
-   default String c(String msg) {
+    default String c(String msg) {
         return ChatColor.translateAlternateColorCodes('&', msg);
     }
 
@@ -26,17 +26,5 @@ public interface ChatUtil {
         for (String line : input) ret.add(ChatColor.translateAlternateColorCodes('&', line));
         return ret;
     }
-    
-    default void getNameByUUID(UUID uuid){
-       Bukkit.getPlayer(uuid).getName();
-    }
-    
-    default Player getPlayerByUUID(UUID uuid){
-       return Bukkit.getPlayer(uuid);
-    }
-    
-
-    
-    
 
 }
