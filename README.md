@@ -33,7 +33,7 @@ dependencies {
 
 Alright, now that you have implemented this into your project, i'll show you some examples!
 
-##Creating YML Files:
+## Creating YML Files:
 ````java
 package wiki.justreddy.ga;
 
