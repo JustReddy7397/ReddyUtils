@@ -24,7 +24,11 @@ public class CommandManager implements CommandExecutor {
         if(sender instanceof Player){
             Player p = (Player) sender;
             if(args.length > 0){
-
+                for(int i = 0; i < getSubcommands().size(); i++){
+                    if(args[0].equalsIgnoreCase(getSubcommands().get(i).getName())){
+                        getSubcommands().get(i).run(p, args);
+                    }
+                }
             }else if(args.length == 0){
                 if(helpMessage.isEmpty()){
                     // Will Send Nothing

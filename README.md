@@ -17,7 +17,7 @@ Maven:
     <dependency>
         <groupId>com.github.JustReddy7397</groupId>
         <artifactId>ReddyUtils</artifactId>
-        <version>1.2</version>
+        <version>1.3</version>
     </dependency>
 </dependencies>
 ```
@@ -27,7 +27,7 @@ repositories {
     maven { url 'https://jitpack.io' }
 }
 dependencies {
-    implementation "com.github.JustReddy7397:ReddyUtils:1.2"
+    implementation "com.github.JustReddy7397:ReddyUtils:1.3"
 }
 ```
 
