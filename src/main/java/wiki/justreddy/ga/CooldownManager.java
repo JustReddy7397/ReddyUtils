@@ -7,8 +7,24 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public interface CooldownManager extends ChatUtil {
+public class CooldownManager implements ChatUtil {
 
+    private final Map<UUID, Long> cooldown = new HashMap<>();
+
+    public void addCooldown(Player p, long time){
+        cooldown.put(p.getUniqueId(), time);
+    }
+
+    public void removeCooldown(Player p){
+        cooldown.remove(p.getUniqueId());
+    }
+
+    public boolean inCooldown(Player p){
+
+        return cooldown.containsKey(p.getUniqueId()) && cooldown.get(p.getUniqueId()) > System.currentTimeMillis();
+    }
+
+    /*
     Map<UUID, Long> players_cooldown = new HashMap<>();
 
     default void addCooldown(Player p, long time){
@@ -33,5 +49,7 @@ public interface CooldownManager extends ChatUtil {
             }
         }
     }
+
+     */
 
 }

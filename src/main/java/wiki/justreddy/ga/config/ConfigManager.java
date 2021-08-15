@@ -18,8 +18,8 @@ public class ConfigManager {
         configurations = new HashMap<>();
     }
 
-    public ConfigHandler getFile(String type) {
-        return configurations.get(type);
+    public ConfigHandler getFile(String fileType) {
+        return configurations.get(fileType);
     }
 
     public void reloadFiles() {
@@ -30,6 +30,14 @@ public class ConfigManager {
         configurations.put(fileType, new ConfigHandler(plugin, fileName));
         configurations.values().forEach(ConfigHandler::saveDefaultConfig);
     }
+
+     public void saveFile(String fileType){
+         configurations.get(fileType).save();
+     }
+
+     public void saveFiles(){
+        configurations.values().forEach(ConfigHandler::save);
+     }
 
     public void createFolder(JavaPlugin plugin){
         File file = new File("plugins/" + plugin.getDescription().getName());
