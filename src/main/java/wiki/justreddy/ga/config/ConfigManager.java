@@ -1,12 +1,8 @@
 package wiki.justreddy.ga.config;
 
-import org.bukkit.configuration.InvalidConfigurationException;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,11 +21,17 @@ public class ConfigManager {
     public void reloadFiles() {
         configurations.values().forEach(ConfigHandler::reload);
     }
+    
+    public void reloadFile(String fileType) {
+        configurations.get(fileType).reload();
+    }
 
     public void registerFile(JavaPlugin plugin, String fileType, String fileName) {
         configurations.put(fileType, new ConfigHandler(plugin, fileName));
         configurations.values().forEach(ConfigHandler::saveDefaultConfig);
     }
+
+
 
      public void saveFile(String fileType){
          configurations.get(fileType).save();
@@ -45,9 +47,7 @@ public class ConfigManager {
             file.mkdir();
         }
     }
-
-
-
+    
 
 
 
