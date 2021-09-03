@@ -1,4 +1,4 @@
-package wiki.justreddy.ga.config;
+package wiki.justreddy.ga.reddyutils.config;
 
 import org.bukkit.plugin.java.JavaPlugin;
 

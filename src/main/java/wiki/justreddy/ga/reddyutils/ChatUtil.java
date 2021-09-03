@@ -1,4 +1,4 @@
-package wiki.justreddy.ga;
+package wiki.justreddy.ga.reddyutils;
 
 import org.bukkit.ChatColor;
 

@@ -34,14 +34,15 @@ dependencies {
 Alright, now that you have implemented this into your project, i'll show you some examples!
 
 ## Creating YML Files:
+
 ````java
 package wiki.justreddy.ga;
 
 import org.bukkit.plugin.java.JavaPlugin;
-import wiki.justreddy.ga.config.ConfigManager;
+import ConfigManager;
 
 public class TestPlugin extends JavaPlugin {
-    
+
     private static TestPlugin plugin;
 
     private ConfigManager configManager;
@@ -51,39 +52,40 @@ public class TestPlugin extends JavaPlugin {
         plugin = this;
 
         configManager = new ConfigManager();
-        
+
         configManager.createFolder(this); // Optional, but its recommend.
         // If you don't use the default config.yml from spigots api , it won't load the plugins folder
         // That is why this method exists
-        
+
         configManager.registerFile(this, "config", "config");
         // FileType: Name that will be used to get the file, filename: the name of the file whiteout the .yml
         // When you did this, make sure you created the .yml file in the resources folder!
         configManager.registerFile(this, "messages", "messages");
         // You can make as many files are u like
-        
-        
+
+
     }
-    
+
     // These methods are gonna get used by the next example
-    
-    public static TestPlugin getPlugin(){
+
+    public static TestPlugin getPlugin() {
         return plugin;
     }
-    
-    public ConfigManager getConfigManager(){
+
+    public ConfigManager getConfigManager() {
         return configManager;
     }
-    
+
 }
 ````
 
 ## Getting a path from a yml file:
+
 ````java
 package wiki.justreddy.ga;
 
 import org.bukkit.entity.Player;
-import wiki.justreddy.ga.manager.SubCommand;
+import SubCommand;
 
 public class TestCommand implements SubCommand {
     @Override
@@ -103,7 +105,7 @@ public class TestCommand implements SubCommand {
 
     @Override
     public void run(Player p, String[] args) {
-        
+
         // Will throw an error if it cant find the file type or the path
         p.sendMessage(TestPlugin.getPlugin().getConfigManager().getFile("messages").getConfig().getString("hello-world"));
 
@@ -112,22 +114,23 @@ public class TestCommand implements SubCommand {
 ````
 
 ## Registering the CommandManager and adding a subcommand
+
 `````java
 package wiki.justreddy.ga;
 
 import org.bukkit.plugin.java.JavaPlugin;
-import wiki.justreddy.ga.manager.CommandManager;
+import CommandManager;
 
 public class TestPlugin extends JavaPlugin {
-    
+
     private CommandManager commandManager;
-    
+
     @Override
     public void onEnable() {
-        
+
         commandManager = new CommandManager();
-        
-        
+
+
         // This part is optional, you can create your own help message
         commandManager.addHelpMessage("--------------------");
         // Placeholders:
@@ -136,24 +139,25 @@ public class TestPlugin extends JavaPlugin {
         // %syntax% - Retuns the commands syntax. For example: /test help
         commandManager.addHelpMessage("%syntax% - %description%");
         commandManager.addHelpMessage("--------------------");
-        
+
         // How to register the actual command:
         // Ofcourse you have to put this command name in the plugin.yml
         // subcommands don't need to be registered in the plugin.yml
         getCommand("test").setExecutor(new CommandManager());
         // Register subcommands
         commandManager.addSubCommand(new HelpCommand(commandManager));
-        
+
     }
 }
 `````
 ## Creating the subcommand
+
 ````java
 package wiki.justreddy.ga;
 
 import org.bukkit.entity.Player;
-import wiki.justreddy.ga.manager.CommandManager;
-import wiki.justreddy.ga.manager.SubCommand;
+import CommandManager;
+import SubCommand;
 
 public class HelpCommand implements SubCommand {
 
@@ -161,7 +165,7 @@ public class HelpCommand implements SubCommand {
 
     private CommandManager commandManager;
 
-    public HelpCommand(CommandManager commandManager){
+    public HelpCommand(CommandManager commandManager) {
         this.commandManager = commandManager;
     }
 
@@ -184,7 +188,7 @@ public class HelpCommand implements SubCommand {
     public void run(Player p, String[] args) {
 
         p.sendMessage("--------------------");
-        for(int i = 0; i < commandManager.getSubcommands().size(); i++){
+        for (int i = 0; i < commandManager.getSubcommands().size(); i++) {
             p.sendMessage(commandManager.getSubcommands().get(i).getSyntax() + " - " + commandManager.getSubcommands().get(i).getDescription());
         }
         p.sendMessage("--------------------");

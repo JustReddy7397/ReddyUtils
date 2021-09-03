@@ -1,4 +1,4 @@
-package wiki.justreddy.ga.manager;
+package wiki.justreddy.ga.reddyutils.manager;
 
 import org.bukkit.entity.Player;
 
