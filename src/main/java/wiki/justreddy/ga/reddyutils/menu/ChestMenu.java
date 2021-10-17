@@ -12,7 +12,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Arrays;
 
-public abstract class Menu implements InventoryHolder {
+public abstract class ChestMenu implements InventoryHolder {
 
     protected Inventory inventory;
     protected ItemStack FILLER_GLASS = XMaterial.BLACK_STAINED_GLASS_PANE.parseItem();

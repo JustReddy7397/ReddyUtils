@@ -6,7 +6,7 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public abstract class PaginatedMenu extends Menu {
+public abstract class PaginatedChestMenu extends ChestMenu {
 
     protected int page = 0;
 

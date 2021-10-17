@@ -31,8 +31,6 @@ public class ConfigManager {
         configurations.values().forEach(ConfigHandler::saveDefaultConfig);
     }
 
-
-
      public void saveFile(String fileType){
          configurations.get(fileType).save();
      }

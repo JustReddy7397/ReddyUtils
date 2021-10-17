@@ -44,7 +44,7 @@ public class CommandManager implements CommandExecutor {
         return true;
     }
 
-    public List<SubCommand> getSubcommands() {
+    private List<SubCommand> getSubcommands() {
         return subcommands;
     }
 
