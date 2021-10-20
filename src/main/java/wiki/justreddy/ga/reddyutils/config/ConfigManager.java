@@ -6,6 +6,10 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author ItsLewizzz
+ */
+
 public class ConfigManager {
 
     private final Map<String, ConfigHandler> configurations;
@@ -28,7 +32,7 @@ public class ConfigManager {
 
     public void registerFile(JavaPlugin plugin, String fileType, String fileName) {
         configurations.put(fileType, new ConfigHandler(plugin, fileName));
-        configurations.values().forEach(ConfigHandler::saveDefaultConfig);
+        configurations.get(fileType).saveDefaultConfig();
     }
 
      public void saveFile(String fileType){

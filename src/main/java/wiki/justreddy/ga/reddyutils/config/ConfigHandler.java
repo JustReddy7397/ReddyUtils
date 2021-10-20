@@ -8,6 +8,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * @author ItsLewizzz
+ */
+
 public class ConfigHandler {
 
     private final JavaPlugin plugin;
@@ -37,7 +41,6 @@ public class ConfigHandler {
             plugin.getLogger().severe("such as using tabs for spaces or forgetting to end quotes");
             plugin.getLogger().severe("before reporting to the developer.");
             plugin.getLogger().severe("Error ID: 3.");
-            plugin.getLogger().severe("Support Server: https://discord.gg/SJbAvawQae.");
             plugin.getLogger().severe("The plugin will now disable..");
             plugin.getLogger().severe("============= CONFIGURATION ERROR =============");
             plugin.getServer().getPluginManager().disablePlugin(plugin);

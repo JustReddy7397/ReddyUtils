@@ -8,6 +8,10 @@ import org.bukkit.entity.Player;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author JustReddy
+ */
+
 public class CommandManager implements CommandExecutor {
 
     private final List<SubCommand> subcommands;
