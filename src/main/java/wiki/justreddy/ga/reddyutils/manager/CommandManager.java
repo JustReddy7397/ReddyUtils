@@ -17,7 +17,7 @@ public class CommandManager implements CommandExecutor {
     private final List<SubCommand> subcommands;
     private final List<String> helpMessage;
 
-    public CommandManager(){
+    public CommandManager() {
         subcommands = new ArrayList<>();
         helpMessage = new ArrayList<>();
     }
@@ -25,18 +25,18 @@ public class CommandManager implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
-        if(sender instanceof Player){
+        if (sender instanceof Player) {
             Player p = (Player) sender;
-            if(args.length > 0){
-                for(int i = 0; i < getSubcommands().size(); i++){
-                    if(args[0].equalsIgnoreCase(getSubcommands().get(i).getName())){
-                        getSubcommands().get(i).run(p, args);
+            if (args.length > 0) {
+                for (int i = 0; i < getSubcommands().size(); i++) {
+                        if (args[0].equalsIgnoreCase(getSubcommands().get(i).getName()) || (getSubcommands().get(i).getAliases() != null && getSubcommands().get(i).getAliases().contains(args[0]))) {
+                            getSubcommands().get(i).run(p, args);
                     }
                 }
-            }else if(args.length == 0){
-                if(helpMessage.isEmpty()){
+            } else if (args.length == 0) {
+                if (helpMessage.isEmpty()) {
                     // Will Send Nothing
-                }else {
+                } else {
                     for (int i = 0; i < getHelpMessage().size(); i++) {
                         for (int j = 0; j < getSubcommands().size(); j++) {
                             p.sendMessage(getHelpMessage().get(i).replace("%name%", getSubcommands().get(j).getName()).replace("%description%", getSubcommands().get(j).getDescription()).replace("%syntax%", getSubcommands().get(j).getSyntax()));
@@ -52,11 +52,11 @@ public class CommandManager implements CommandExecutor {
         return subcommands;
     }
 
-    public void addSubCommand(SubCommand subCommand){
+    public void addSubCommand(SubCommand subCommand) {
         subcommands.add(subCommand);
     }
 
-    public void addHelpMessage(String msg){
+    public void addHelpMessage(String msg) {
         helpMessage.add(msg);
     }
 
