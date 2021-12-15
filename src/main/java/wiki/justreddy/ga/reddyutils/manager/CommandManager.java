@@ -29,8 +29,8 @@ public class CommandManager implements CommandExecutor {
             Player p = (Player) sender;
             if (args.length > 0) {
                 for (int i = 0; i < getSubcommands().size(); i++) {
-                        if ((args[0].equalsIgnoreCase(getSubcommands().get(i).getName())) || (getSubcommands().get(i).getAliases() != null && getSubcommands().get(i).getAliases().contains(args[0]))) {
-                            getSubcommands().get(i).run(p, args);
+                    if ((args[0].equalsIgnoreCase(getSubcommands().get(i).getName())) || (getSubcommands().get(i).getAliases() != null && getSubcommands().get(i).getAliases().contains(args[0]))) {
+                        getSubcommands().get(i).run(p, args);
                     }
                 }
             } else if (args.length == 0) {
@@ -48,7 +48,7 @@ public class CommandManager implements CommandExecutor {
         return true;
     }
 
-    private List<SubCommand> getSubcommands() {
+    public List<SubCommand> getSubcommands() {
         return subcommands;
     }
 
