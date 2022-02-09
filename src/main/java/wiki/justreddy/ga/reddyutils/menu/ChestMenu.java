@@ -17,9 +17,13 @@ public abstract class ChestMenu implements InventoryHolder {
     protected Inventory inventory;
     protected ItemStack FILLER_GLASS = XMaterial.BLACK_STAINED_GLASS_PANE.parseItem();
 
-    public abstract String getMenuName();
+    private final String menuName;
+    private final int slots;
 
-    public abstract int getSlots();
+    public ChestMenu(String menuName, int slots) {
+        this.menuName = menuName;
+        this.slots = slots;
+    }
 
 
     public abstract void handleMenu(InventoryClickEvent e);
@@ -30,7 +34,7 @@ public abstract class ChestMenu implements InventoryHolder {
 
     public void open(Player p) {
 
-        inventory = Bukkit.createInventory(this, getSlots(), getMenuName());
+        inventory = Bukkit.createInventory(this, slots, menuName);
 
         this.setMenuItems(p);
 
@@ -44,7 +48,7 @@ public abstract class ChestMenu implements InventoryHolder {
     }
 
     public void setFillerGlass() {
-        for (int i = 0; i < getSlots(); i++) {
+        for (int i = 0; i < slots; i++) {
             if (inventory.getItem(i) == null) {
                 inventory.setItem(i, FILLER_GLASS);
             }

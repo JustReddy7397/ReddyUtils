@@ -14,12 +14,24 @@ public abstract class PaginatedChestMenu extends ChestMenu {
 
     protected int index = 0;
 
+    public PaginatedChestMenu(String menuName, int slots) {
+        super(menuName, slots);
+    }
+
 
     //Set the border and menu buttons for the menu
     public void addMenuBorder() {
-        ItemStack left = XMaterial.LIME_DYE.parseItem();
-        ItemMeta meta = left.getItemMeta();
-        meta.setDisplayName(ChatColor.GREEN + "Left");
+        ItemStack left;
+        ItemMeta meta;
+        if(page == 0){
+            left = XMaterial.GRAY_DYE.parseItem();
+             meta = left.getItemMeta();
+            meta.setDisplayName(ChatColor.RED + "You're on the first page");
+        }else{
+            left = XMaterial.LIME_DYE.parseItem();
+            meta = left.getItemMeta();
+            meta.setDisplayName(ChatColor.GREEN + "Left");
+        }
         left.setItemMeta(meta);
         ItemStack right = XMaterial.LIME_DYE.parseItem();
         ItemMeta metaa = right.getItemMeta();

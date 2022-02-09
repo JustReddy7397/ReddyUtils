@@ -14,7 +14,11 @@ public abstract class HopperMenu implements InventoryHolder {
     protected Inventory inventory;
     protected ItemStack FILLER_GLASS = XMaterial.BLACK_STAINED_GLASS_PANE.parseItem();
 
-    public abstract String getMenuName();
+    private final String menuName;
+
+    public HopperMenu(String menuName){
+        this.menuName = menuName;
+    }
 
     public abstract void handleMenu(InventoryClickEvent e);
 
@@ -22,7 +26,7 @@ public abstract class HopperMenu implements InventoryHolder {
 
     public void open(Player p){
 
-        inventory = Bukkit.createInventory(this, InventoryType.HOPPER, getMenuName());
+        inventory = Bukkit.createInventory(this, InventoryType.HOPPER, menuName);
 
         setMenuItems(p);
 
