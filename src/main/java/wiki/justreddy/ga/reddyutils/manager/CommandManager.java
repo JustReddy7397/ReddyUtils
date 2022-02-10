@@ -28,24 +28,28 @@ public class CommandManager implements CommandExecutor, ChatUtil {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
-        for (int i = 0; i < getSubcommands().size(); i++) {
-            if (getSubcommands().get(i).isPlayersOnly()) {
-                if (sender instanceof Player) {
-                    final Player player = (Player) sender;
-                    if ((args[0].equalsIgnoreCase(getSubcommands().get(i).getName())) || (getSubcommands().get(i).getAliases() != null && getSubcommands().get(i).getAliases().contains(args[0]))) {
-                        if (!getSubcommands().get(i).isPermissionEmpty()) {
-                            player.sendMessage(c(noPermissionMessage.replaceAll("%permission%", getSubcommands().get(i).getPermission())));
-                            return true;
-                        } else {
-                            getSubcommands().get(i).onCommand(player, args);
+        if(args.length > 0){
+            for (int i = 0; i < getSubcommands().size(); i++) {
+                if (getSubcommands().get(i).isPlayersOnly()) {
+                    if (sender instanceof Player) {
+                        final Player player = (Player) sender;
+                        if ((args[0].equalsIgnoreCase(getSubcommands().get(i).getName())) || (getSubcommands().get(i).getAliases() != null && getSubcommands().get(i).getAliases().contains(args[0]))) {
+                            if (!getSubcommands().get(i).isPermissionEmpty()) {
+                                player.sendMessage(c(noPermissionMessage.replaceAll("%permission%", getSubcommands().get(i).getPermission())));
+                                return true;
+                            } else {
+                                getSubcommands().get(i).onCommand(player, args);
+                            }
                         }
                     }
-                }
-            } else {
-                if ((args[0].equalsIgnoreCase(getSubcommands().get(i).getName())) || (getSubcommands().get(i).getAliases() != null && getSubcommands().get(i).getAliases().contains(args[0]))) {
-                    getSubcommands().get(i).onCommand(sender, args);
+                } else {
+                    if ((args[0].equalsIgnoreCase(getSubcommands().get(i).getName())) || (getSubcommands().get(i).getAliases() != null && getSubcommands().get(i).getAliases().contains(args[0]))) {
+                        getSubcommands().get(i).onCommand(sender, args);
+                    }
                 }
             }
+        }else{
+            return true;
         }
 
         return true;
