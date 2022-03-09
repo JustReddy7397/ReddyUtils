@@ -4,6 +4,8 @@ import com.google.common.hash.Hashing;
 import com.google.common.io.Files;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import wiki.justreddy.ga.reddyutils.dependency.DLoader;
 import wiki.justreddy.ga.reddyutils.dependency.base.Dependency;
 
@@ -105,8 +107,10 @@ public final class Urls {
             whenDone.accept(jarFile, pomFile);
         } catch (Exception e) {
             e.printStackTrace();
-            DLoader.log(Level.SEVERE, "Failed to download dependency " + dependency.getName());
-        }
+            Bukkit.getConsoleSender().sendMessage(
+                    ChatColor.translateAlternateColorCodes('&',
+                            "&c" + DLoader.getInstance().getPrefix() + " Failed to download the dependency " + dependency.getName())
+            );        }
     }
 
 
@@ -166,8 +170,10 @@ public final class Urls {
 
         } catch (IOException e) {
             e.printStackTrace();
-            DLoader.log(Level.SEVERE, "Failed to download url to file " + file.getName());
-        }
+            Bukkit.getConsoleSender().sendMessage(
+                    ChatColor.translateAlternateColorCodes('&',
+                            "&c" + DLoader.getInstance().getPrefix() + " Failed to download url to file  " + file.getName())
+            );        }
     }
 
 }

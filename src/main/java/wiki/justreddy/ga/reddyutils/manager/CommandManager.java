@@ -48,7 +48,8 @@ public class CommandManager implements CommandExecutor, ChatUtil {
                     }
                 }
             }
-        }else{
+        }else if(args.length == 0){
+
             return true;
         }
 

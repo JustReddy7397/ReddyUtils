@@ -3,6 +3,7 @@ package wiki.justreddy.ga.reddyutils.dependency;
 import com.google.common.base.Strings;
 import com.google.common.collect.Maps;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 import wiki.justreddy.ga.reddyutils.dependency.base.Dependency;
 import wiki.justreddy.ga.reddyutils.dependency.util.Urls;
@@ -26,8 +27,12 @@ public class DLoader {
 
     private static DLoader instance;
 
+    private JavaPlugin javaPlugin;
+
+    private final String prefix = "[" + getJavaPlugin().getDescription().getName() + "]";
+
     private static Method method;
-    private static final URLClassLoader classLoader = ((URLClassLoader) ClassLoader.getSystemClassLoader());
+    private static final URLClassLoader classLoader = (URLClassLoader) URLClassLoader.getSystemClassLoader();
 
     private static boolean working = true, showDebug = false, enforceFileCheck = true;
 
@@ -51,6 +56,7 @@ public class DLoader {
      */
     public void onLoad(JavaPlugin javaPlugin){
         if (!working) return;
+        this.javaPlugin = javaPlugin;
         dependencyFolder = new File("plugins/"+ javaPlugin.getDataFolder().getName() +"/Dependencies");
         if (!dependencyFolder.exists()) dependencyFolder.mkdirs();
         load(new Dependency("h2", "1.4.200", "com.h2database", "h2"));
@@ -66,6 +72,7 @@ public class DLoader {
 
     public void load( Dependency dependency) {
         load(dependency, () -> {
+            Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + prefix + " Successfully downloaded the dependency " + dependency.getName());
         });
     }
 
@@ -139,6 +146,14 @@ public class DLoader {
     public static void log(Level level, String... message) {
         Logger logger = Bukkit.getLogger();
         for (String msgLine : message) logger.log(level, msgLine);
+    }
+
+    private JavaPlugin getJavaPlugin() {
+        return javaPlugin;
+    }
+
+    public String getPrefix() {
+        return prefix;
     }
 
     public static DLoader getInstance() {
