@@ -28,7 +28,6 @@ public class DLoader {
 
     private JavaPlugin javaPlugin;
 
-    private final String prefix = "[" + DLoader.getInstance().getJavaPlugin().getDescription().getName() + "]";
 
     private static Method method;
     private static CustomClassLoader classLoader = new CustomClassLoader(new URL[0], getInstance().getClass().getClassLoader());
@@ -56,6 +55,9 @@ public class DLoader {
         this.javaPlugin = javaPlugin;
         dependencyFolder = new File("plugins/"+ javaPlugin.getDataFolder().getName() +"/Dependencies");
         if (!dependencyFolder.exists()) dependencyFolder.mkdirs();
+    }
+
+    public void loadRequiredDependencies(){
         load(new Dependency("h2", "1.4.200", "com.h2database", "h2"));
         load(new Dependency("mongodb-driver", "3.12.10", "org.mongodb", "mongodb-driver"));
         load(new Dependency("mongodb-driver-core", "3.12.10", "org.mongodb", "mongodb-driver-core"));
@@ -72,7 +74,7 @@ public class DLoader {
 
     public void load( Dependency dependency) {
         load(dependency, () -> {
-            Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + prefix + " Successfully downloaded the dependency " + dependency.getName());
+            Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + javaPlugin.getDescription().getName() + " Successfully downloaded the dependency " + dependency.getName());
         });
     }
 
@@ -148,13 +150,6 @@ public class DLoader {
         for (String msgLine : message) logger.log(level, msgLine);
     }
 
-    private JavaPlugin getJavaPlugin() {
-        return javaPlugin;
-    }
-
-    public String getPrefix() {
-        return prefix;
-    }
 
     public static DLoader getInstance() {
         if(instance == null) instance = new DLoader();

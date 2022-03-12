@@ -109,7 +109,7 @@ public final class Urls {
             e.printStackTrace();
             Bukkit.getConsoleSender().sendMessage(
                     ChatColor.translateAlternateColorCodes('&',
-                            "&c" + DLoader.getInstance().getPrefix() + " Failed to download the dependency " + dependency.getName())
+                            "&c"+ " Failed to download the dependency " + dependency.getName())
             );        }
     }
 
@@ -172,7 +172,7 @@ public final class Urls {
             e.printStackTrace();
             Bukkit.getConsoleSender().sendMessage(
                     ChatColor.translateAlternateColorCodes('&',
-                            "&c" + DLoader.getInstance().getPrefix() + " Failed to download url to file  " + file.getName())
+                            "&c" + " Failed to download url to file  " + file.getName())
             );        }
     }
 
