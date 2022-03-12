@@ -1,7 +1,10 @@
 package wiki.justreddy.ga.reddyutils;
 
-public class Version {
+import org.bukkit.plugin.java.JavaPlugin;
+import wiki.justreddy.ga.reddyutils.dependency.DLoader;
 
-    public static final double API_VERSION = 2.7;
+public class Version   {
+
+    public static final double API_VERSION = 2.9;
 
 }

@@ -12,7 +12,6 @@ import wiki.justreddy.ga.reddyutils.dependency.util.Xmls;
 import java.io.File;
 import java.lang.reflect.Method;
 import java.net.URL;
-import java.net.URLClassLoader;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -29,27 +28,25 @@ public class DLoader {
 
     private JavaPlugin javaPlugin;
 
-    private final String prefix = "[" + getJavaPlugin().getDescription().getName() + "]";
+    private final String prefix = "[" + DLoader.getInstance().getJavaPlugin().getDescription().getName() + "]";
 
     private static Method method;
-    private static final URLClassLoader classLoader = (URLClassLoader) URLClassLoader.getSystemClassLoader();
+    private static CustomClassLoader classLoader = new CustomClassLoader(new URL[0], getInstance().getClass().getClassLoader());
 
     private static boolean working = true, showDebug = false, enforceFileCheck = true;
 
-    static {
-        try {
-            method = URLClassLoader.class.getDeclaredMethod("addURL", URL.class);
-            method.setAccessible(true);
-        } catch (NoSuchMethodException e) {
-            log(Level.SEVERE, "Failed to initialize URLClassLoader, Dependencies will not be loaded!");
-            e.printStackTrace();
-
-            working = false;
-        }
-    }
 
     private File dependencyFolder;
     private final Map<String, Dependency> dependencies = Maps.newHashMap();
+
+    static {
+        try{
+            method =classLoader.getClass().getDeclaredMethod("addURL", URL.class);
+            method.setAccessible(true);
+        }catch (NoSuchMethodException ex){
+            ex.printStackTrace();
+        }
+    }
 
     /*
     Put this in your onLoad();
@@ -60,6 +57,9 @@ public class DLoader {
         dependencyFolder = new File("plugins/"+ javaPlugin.getDataFolder().getName() +"/Dependencies");
         if (!dependencyFolder.exists()) dependencyFolder.mkdirs();
         load(new Dependency("h2", "1.4.200", "com.h2database", "h2"));
+        load(new Dependency("mongodb-driver", "3.12.10", "org.mongodb", "mongodb-driver"));
+        load(new Dependency("mongodb-driver-core", "3.12.10", "org.mongodb", "mongodb-driver-core"));
+        load(new Dependency("BSON", "4.4.0", "org.mongodb", "bson"));
     }
 
     public static boolean isShowingDebug() {
