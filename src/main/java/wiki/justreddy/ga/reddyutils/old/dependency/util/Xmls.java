@@ -1,4 +1,4 @@
-package wiki.justreddy.ga.reddyutils.dependency.util;
+package wiki.justreddy.ga.reddyutils.old.dependency.util;
 
 
 import org.apache.commons.io.FileUtils;
@@ -7,8 +7,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-import wiki.justreddy.ga.reddyutils.dependency.DLoader;
-import wiki.justreddy.ga.reddyutils.dependency.base.Dependency;
+import wiki.justreddy.ga.reddyutils.old.dependency.DLoader;
+import wiki.justreddy.ga.reddyutils.old.dependency.base.Dependency;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;

@@ -1,13 +1,13 @@
-package wiki.justreddy.ga.reddyutils.dependency;
+package wiki.justreddy.ga.reddyutils.old.dependency;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.Maps;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
-import wiki.justreddy.ga.reddyutils.dependency.base.Dependency;
-import wiki.justreddy.ga.reddyutils.dependency.util.Urls;
-import wiki.justreddy.ga.reddyutils.dependency.util.Xmls;
+import wiki.justreddy.ga.reddyutils.old.dependency.base.Dependency;
+import wiki.justreddy.ga.reddyutils.old.dependency.util.Urls;
+import wiki.justreddy.ga.reddyutils.old.dependency.util.Xmls;
 
 import java.io.File;
 import java.lang.reflect.Method;
@@ -30,7 +30,7 @@ public class DLoader {
 
 
     private static Method method;
-    private static CustomClassLoader classLoader = new CustomClassLoader(new URL[0], getInstance().getClass().getClassLoader());
+    private static final CustomClassLoader classLoader = new CustomClassLoader(new URL[0], getInstance().getClass().getClassLoader());
 
     private static boolean working = true, showDebug = false, enforceFileCheck = true;
 
@@ -40,7 +40,7 @@ public class DLoader {
 
     static {
         try{
-            method =classLoader.getClass().getDeclaredMethod("addURL", URL.class);
+            method = classLoader.getClass().getMethod("addURL", URL.class);
             method.setAccessible(true);
         }catch (NoSuchMethodException ex){
             ex.printStackTrace();
@@ -55,6 +55,7 @@ public class DLoader {
         this.javaPlugin = javaPlugin;
         dependencyFolder = new File("plugins/"+ javaPlugin.getDataFolder().getName() +"/Dependencies");
         if (!dependencyFolder.exists()) dependencyFolder.mkdirs();
+        load(new Dependency("h2", "1.4.200", "com.h2database", "h2"));
     }
 
     public void loadRequiredDependencies(){

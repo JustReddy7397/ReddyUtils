@@ -1,8 +1,8 @@
-package wiki.justreddy.ga.reddyutils.dependency.base;
+package wiki.justreddy.ga.reddyutils.old.dependency.base;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
-import wiki.justreddy.ga.reddyutils.dependency.util.Urls;
+import wiki.justreddy.ga.reddyutils.old.dependency.util.Urls;
 
 public final class Dependency {
 
