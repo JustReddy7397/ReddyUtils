@@ -1,4 +1,4 @@
-package wiki.justreddy.ga.reddyutils.old.dependency;
+package wiki.justreddy.ga.reddyutils.dependency;
 
 import java.net.URL;
 import java.net.URLClassLoader;

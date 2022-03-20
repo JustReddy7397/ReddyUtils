@@ -1,4 +1,4 @@
-package wiki.justreddy.ga.reddyutils.old.dependency.util;
+package wiki.justreddy.ga.reddyutils.dependency.util;
 
 import com.google.common.hash.Hashing;
 import com.google.common.io.Files;
@@ -6,8 +6,8 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import wiki.justreddy.ga.reddyutils.old.dependency.DLoader;
-import wiki.justreddy.ga.reddyutils.old.dependency.base.Dependency;
+import wiki.justreddy.ga.reddyutils.dependency.DLoader;
+import wiki.justreddy.ga.reddyutils.dependency.base.Dependency;
 
 import java.io.File;
 import java.io.IOException;

@@ -35,8 +35,12 @@ public class CommandManager implements CommandExecutor, ChatUtil {
                         final Player player = (Player) sender;
                         if ((args[0].equalsIgnoreCase(getSubcommands().get(i).getName())) || (getSubcommands().get(i).getAliases() != null && getSubcommands().get(i).getAliases().contains(args[0]))) {
                             if (!getSubcommands().get(i).isPermissionEmpty()) {
-                                player.sendMessage(c(noPermissionMessage.replaceAll("%permission%", getSubcommands().get(i).getPermission())));
-                                return true;
+                                if(!player.hasPermission(getSubcommands().get(i).getPermission())){
+                                    player.sendMessage(c(noPermissionMessage.replaceAll("%permission%", getSubcommands().get(i).getPermission())));
+                                    return true;
+                                }else{
+                                    getSubcommands().get(i).onCommand(player, args);
+                                }
                             } else {
                                 getSubcommands().get(i).onCommand(player, args);
                             }

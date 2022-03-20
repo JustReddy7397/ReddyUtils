@@ -1,13 +1,13 @@
-package wiki.justreddy.ga.reddyutils.old.dependency;
+package wiki.justreddy.ga.reddyutils.dependency;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.Maps;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
-import wiki.justreddy.ga.reddyutils.old.dependency.base.Dependency;
-import wiki.justreddy.ga.reddyutils.old.dependency.util.Urls;
-import wiki.justreddy.ga.reddyutils.old.dependency.util.Xmls;
+import wiki.justreddy.ga.reddyutils.dependency.base.Dependency;
+import wiki.justreddy.ga.reddyutils.dependency.util.Urls;
+import wiki.justreddy.ga.reddyutils.dependency.util.Xmls;
 
 import java.io.File;
 import java.lang.reflect.Method;
